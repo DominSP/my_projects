@@ -1,4 +1,4 @@
-## **🧑‍💻 O mnie**  
+## ** O mnie**  
 👋 Hej! Nazywam się **Dominika** i jestem magistrem matematyki. Interesuję się **analizą danych, uczeniem maszynowym oraz modelowaniem statystycznym**.  
 
 🎯 Moje cele:  
@@ -12,7 +12,7 @@ Jeśli chcesz porozmawiać o ML, wymienić się doświadczeniem lub masz propozy
 🐙 **GitHub**: https://github.com/DominSP
 
 
-## **🧑‍💻 About Me**  
+## ** About Me**  
 👋 Hi! My name is **Dominika**, and I have a Master's degree in Mathematics. I am passionate about **data analysis, machine learning, and statistical modeling**.  
 
 🎯 My goals:  
