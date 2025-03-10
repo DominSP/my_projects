@@ -1,81 +1,54 @@
-# Zaimplementuj perceptron
-
 import numpy as np
-import random
 
+# Ocena klasyfikacji binarnej
+def classification_metrics(correct, predicted):
+    tp = np.sum((correct == 1) & (predicted == 1)) # TruePositive
+    tn = np.sum((correct == 0) & (predicted == 0)) # TrueNegative
+    fp = np.sum((correct == 0) & (predicted == 1)) # FalsePositive (błąd typu I)
+    fn = np.sum((correct == 1) & (predicted == 0)) # FalseNegative (błąd typu II)
 
-def Accuracy (poprawne, udzielone):
-    for i in range(len(poprawne)):
-        if poprawne[i] == udzielone[i] == 1:
-            tp+=1
-        elif poprawne[i] == udzielone[i] == 0:
-            tn+=1
-        elif poprawne[i] == 0 and udzielone[i] == 1:
-            fp+=1
-        elif poprawne[i] == 1 and udzielone[i] == 0:
-            fn+=1
-    return (tp + tn)/(tp + tn + fp + fn)
+    accuracy = (tp + tn) / (tp + tn + fp + fn)
+    precision = tp / (tp + fp) if (tp + fp) != 0 else 0
+    recall = tp / (tp + fn) if (tp + fn) != 0 else 0
+    f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
+    return accuracy, precision, recall, f1
+
+# Przykladowe dane
 correct = np.array([0,1,0,1,1,1,0,0,1,1,0])
 predicted = np.array([1,1,0,0,1,1,1,0,0,0,0])
 
-def true_positives(correct, predicted):
-    return ((correct == 1) & (predicted == 1)).sum() #macierze łaczymy bitowymi symb, sum zliczy true jako 1
-    #((correct) & (predicted)).sum()
-    #(correct * predicted).sum()
-
-def accuracy(correct, predicted):
-    return(correct == predicted).sum() / correct.size()
-
-def precision(correct, predicted):
-    return 
-
-def recall(correct, predicted):
-    return 
-
-def f1(real, predicted, beta):
-    prec = precision(real, predicted)
-    rec = recall(real, predicted)
-    try:
-        return (1 + beta**2) * prec * rec / (beta**2 *prec + rec)
-    except ZeroDivisionError:
-        return 0.0
-
-
-# def perceptron(x, y): # x wektor wesjciowy, y - prawid. klas.
-#     w = np.random.rand(1, 100) #jeden wiersz, 100 kolumn
-#     b = 0
-#     while epsilon < 0.000001:
-#         for d in range(len(x)):
-#             a += w[d] * x[d]
-#         a += b
+accuracy, precision, recall, f1 = classification_metrics(correct, predicted)
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1 Score: {f1}")
 
 class Perceptron:
-    def __inti__(self, num_features, epoka = 50, epsilon = 0.00000000001):
-        self.weights = np.random.ran(num_features)
+    def __init__(self, num_features, epochs = 500, learning_rate=0.01, epsilon=1e-10):
+        self.weights = np.random.rand(num_features)
         self.bias = np.random.rand(1)[0]
+        self.epochs = epochs
+        self.epsilon = epsilon
+        self.learning_rate = learning_rate
 
-    def predict(self, x):
-        return x @ self.weights + self.bias > 0
+    def predict(self, x): # funkcja aktywacji
+        return np.where(np.dot(x, self.weights) + self.bias >= 0, 1, 0)
     
     def train(self, x_train, y_train):
-        iter = 0
-        while iter < self.epoka:
+            for _ in range(self.epochs):
+                prev_weights = self.weights.copy()
 
-            for x, y in zip(x_train, y_train):
-                if self.predict(x) != y:
+                for x, y in zip(x_train, y_train):
+                    prediction = self.predict(x)
+                    update = y - prediction  # -1, 0, lub 1; jeśli 0 to wagi się nie aktualizują, ponieważ była poprawna predykcja
+                    
+                    self.weights += self.learning_rate * update * x
+                    self.bias += self.learning_rate * update
 
-                    new_weights = self.weights + y * x
-                    if abs( new_weights - self.weights ) > self.epsilon :
-                        self.weights = new_weights #*learning rate?
-                    self.bias += y #*learning rate?
-
-            iter += 1
-        
-        return np.array(self.weights, self.bias)
-            # az nie wyczerpiemy czasu, lub beda male zmiany w wagach lub nie osiagniemy zadowolajacego bledu na zbiorze treningowym
-            # ustalic epoke lub próg tolerancji dla błedu klasyfikacji
-# co ma zwrócić train?
-
-    #zrobic przewidywacnie etykiety za pomocą wytrenowanych wag
-
+                # Sprawdzenie, czy wagi się stabilizują
+                if np.linalg.norm(self.weights - prev_weights) < self.epsilon:
+                    break
+ 
+    def test(self, X):
+        return (X @ self.weights + self.bias) > 0
