@@ -1,14 +1,14 @@
 getwd()
-Suicide_Detection <- read.csv("Suicide_Detection.csv", sep = ",")
+Suicide_Detection <- read.csv("Suicide_Detection.csv", sep = ",") #dane należy podbrać z Kaggle https://www.kaggle.com/datasets/nikhileswarkomati/suicide-watch?fbclid=IwAR0s9EECEHd7B2xYubTytFXYVxoW4thbEqESogFy_K5iTwL6o1v48WwYzPY
 pomocnicze_dane<-Suicide_Detection[1:15000,]
 pomocnicze_dane[40,2]
 head(Suicide_Detection)
 summary(pomocnicze_dane)
 str(pomocnicze_dane)
 
-#X- jakies liczby (int)
-#teskt (charakter)
-#class- przypisuje non suicide, albo suicide (charakter)
+# X- jakies liczby (int)
+# teskt (charakter)
+# class- przypisuje non suicide, albo suicide (charakter)
 
 str(pomocnicze_dane[,c(2,3)])
 
