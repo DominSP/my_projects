@@ -59,20 +59,18 @@ class KNNClassifier:
 
         return np.array(predictions) if len(predictions) > 1 else predictions[0]
     
-def open_csv(file_path):
-    x, y = [], []
-    with open(file_path, 'r') as csvfile:
-        csvreader = csv.reader(csvfile, delimiter=' ')
-        for row in csvreader:
-            x.append(list(map(float, row[:-1])))
-            y.append(int(row[-1]))
-    return np.array(x), np.array(y)
-
-x, y = open_csv('dataset1.csv')       
+x, y = [], []
+with open("dataset1.csv", 'r') as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=' ')
+    for row in csvreader:
+        x.append(list(map(float, row[:-1])))
+        y.append(int(row[-1]))
+x = np.array(x)
+y = np.array(y)
 
 # Testowanie klasyfikatora
 knn = KNNClassifier()
 knn.train(x, y)
-new_data = np.array([1.0,2.0], [3.4, 5.0], [1.0,3.2])
+new_data = np.array([[1.0,2.0], [3.4, 5.0], [1.0,3.2]])
 prediction = knn.predict(new_data)
-print(f'Prediction for new data {new_data} is {prediction}') # 1 1 1
+print(f'Prediction for new data {new_data} is {prediction}') # 0 0 0
