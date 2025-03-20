@@ -2,6 +2,9 @@ import numpy as np
 
 # Ocena klasyfikacji binarnej
 def classification_metrics(correct, predicted):
+    if len(correct) != len(predicted):
+        raise ValueError("Vectors 'correct' and 'predicted' must have the same length")
+
     tp = np.sum((correct == 1) & (predicted == 1)) # TruePositive
     tn = np.sum((correct == 0) & (predicted == 0)) # TrueNegative
     fp = np.sum((correct == 0) & (predicted == 1)) # FalsePositive (błąd typu I)
@@ -13,16 +16,6 @@ def classification_metrics(correct, predicted):
     f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
     return accuracy, precision, recall, f1
-
-# Przykladowe dane
-correct = np.array([0,1,0,1,1,1,0,0,1,1,0])
-predicted = np.array([1,1,0,0,1,1,1,0,0,0,0])
-
-accuracy, precision, recall, f1 = classification_metrics(correct, predicted)
-print(f"Accuracy: {accuracy}")
-print(f"Precision: {precision}")
-print(f"Recall: {recall}")
-print(f"F1 Score: {f1}")
 
 class Perceptron:
     def __init__(self, num_features, epochs = 500, learning_rate=0.01, epsilon=1e-10):
@@ -51,4 +44,34 @@ class Perceptron:
                     break
  
     def test(self, X):
-        return (X @ self.weights + self.bias) > 0
+        return self.predict(X)
+    
+import csv
+
+x, y = [], []
+with open('dataset.csv', 'r') as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=' ')
+    for row in csvreader:
+        x.append(list(map(float, row[:-1])))
+        y.append(int(row[-1]))
+
+x, y = np.array(x), np.array(y)
+print(x)
+print(y)
+x_train = x[:7000]
+y_train = y[:7000]
+
+x_test = x[7000:]
+y_test = y[7000:]
+
+perceptron = Perceptron(x.shape[1])
+perceptron.train(x_train, y_train)
+
+predicted = perceptron.test(x_test)
+print(f"predictions: {predicted}")
+
+accuracy, precision, recall, f1 = classification_metrics(y_test, predicted)
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1 Score: {f1}")
