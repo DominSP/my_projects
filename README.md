@@ -3,10 +3,10 @@
 
 🎯 Moje cele:  
 - Tworzenie interesujących projektów ML i dzielenie się nimi  
-- Rozwijanie umiejętności w Deep Learning i NLP  
+- Pogłębiać wiedzę z analizy danych oraz statystyki matematycznej  
 - W pracy zawodowej chciałabym wykorzystywać swoją wiedzę matematyczną oraz logiczne myślenie  
 
-Jeśli chcesz porozmawiać o ML, wymienić się doświadczeniem lub masz propozycje współpracy – zapraszam do kontaktu! 🚀  
+Jeśli chcesz porozmawiać o moich projektach, wymienić się doświadczeniem lub masz propozycje współpracy – zapraszam do kontaktu! 🚀  
 
 📧 **Email**: *domischabowska@wp.pl* 
 🐙 **GitHub**: https://github.com/DominSP
@@ -17,10 +17,10 @@ Jeśli chcesz porozmawiać o ML, wymienić się doświadczeniem lub masz propozy
 
 🎯 My goals:  
 - Creating interesting ML projects and sharing my knowledge  
-- Developing skills in Deep Learning and NLP  
-- Applying my mathematical knowledge and logical thinking in my professional career  
+- Developing skills in data analysis and mathematical statistics  
+- Applying my mathematical knowledge and logical thinking in my professional career
 
-If you'd like to discuss ML, share experiences, or collaborate – feel free to reach out! 🚀  
+If you'd like to discuss about my projects, share experiences, or collaborate – feel free to reach out! 🚀  
 
 📧 **Email**: *domischabowska@wp.pl* 
 🐙 **GitHub**: https://github.com/DominSP  
