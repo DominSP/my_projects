@@ -13,14 +13,14 @@ Jeśli chcesz porozmawiać o moich projektach, wymienić się doświadczeniem lu
 
 
 ## ** About Me**  
-👋 Hi! My name is **Dominika**, and I have a Master's degree in Mathematics. I am passionate about **data analysis, machine learning, and statistical modeling**.  
+👋 Hi! My name is **Dominika** and I have a Master's degree in Mathematics. I am passionate about **data analysis, machine learning and statistical modeling**.  
 
 🎯 My goals:  
 - Creating interesting ML projects and sharing my knowledge  
 - Developing skills in data analysis and mathematical statistics  
 - Applying my mathematical knowledge and logical thinking in my professional career
 
-If you'd like to discuss about my projects, share experiences, or collaborate – feel free to reach out! 🚀  
+If you'd like to discuss about my projects, share experiences or collaborate – feel free to reach out! 🚀  
 
 📧 **Email**: *domischabowska@wp.pl* 
 🐙 **GitHub**: https://github.com/DominSP  
